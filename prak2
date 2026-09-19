@@ -46,3 +46,64 @@ for i in range(0, len(message), 3):#перебираем полученное с
             decode += buk#если есть то добавляем к расшифрованному сообщению
 print(decode)
 
+#5
+# #символы - a, b, c, d, e, значит минимальная длина кодового слова - 3
+# code = {'a': '000', 'b': '001', 'c': '010', 'd': '011', 'e': '100'}
+# message = "abcdeaabd"
+# encode = ''.join(code[x] for x in message)
+# print(len(encode))#обьем
+# code = {'a': '00', 'b': '01', 'd': '11', 'e': '100', 'c': '101'}
+# message = "abcdeaabd"
+# encode = ''.join(code[x] for x in message)
+# print(len(encode))#обьем
+# # 27
+# # 20
+# #вывод - кодирование фиксированным кодом занимает больший обьем чем переменным
+
+#6
+# message = "abcde"
+# code = {'a': '000', 'b': '001', 'c': '010', 'd': '011', 'e': '100'}
+# encode = ''.join(code[x] for x in message)
+# print(len(encode))#обьем при длине кодового слова равной 3
+# code1 = {'a': '0000', 'b': '0001', 'c': '0010', 'd': '0011', 'e': '0100'}
+# encode1 = ''.join(code1[x] for x in message)
+# print(len(encode1))#обьем при длине кодового слова равной 4
+# code2 = {'a': '00000', 'b': '00001', 'c': '00010', 'd': '00011', 'e': '00100'}
+# encode2 = ''.join(code2[x] for x in message)
+# print(len(encode2))#обьем при длине кодового слова равной 5
+# # 15
+# # 20
+# # 25
+# #вывод - чем больше длина кодового слова, тем больше обьем собщения
+
+#7
+# code = {'a': '00000000', 'b': '00000001', 'c': '00000010', 'd': '00000011', 'e': '00000100'}
+# messagetxt = 'abcdeaabd'
+# messagenum = '123456788'
+# encodetxt = ''.join(code[x] for x in messagetxt)
+# encodenum = bin(int(messagenum))[2:]
+# print(len(encodetxt))#бит лдя текста
+# print(len(encodenum))#бит для цифр
+# # 72
+# # 27
+# #вывод - если кодировать цифры двочиным кодом, то информация в цифрах буде занимать меньше места
+
+#8
+# #переменный код:
+# code1 = {'a': '00', 'b': '01', 'd': '11', 'e': '100', 'c': '101'}
+# message1 = "abcdeaabd"
+# encode1 = ''.join(code1[x] for x in message1)
+# print(len(encode1))
+# #фиксированный код:
+# code = {'a': '000', 'b': '001', 'c': '010', 'd': '011', 'e': '100'}
+# message = "abcdeaabd"
+# encode = ''.join(code[x] for x in message)
+# print(len(encode))
+# #байтовый код:
+# code2 = {'a': '00000000', 'b': '00000001', 'c': '00000010', 'd': '00000011', 'e': '00000100'}
+# encode2 = ''.join(code2[x] for x in message)
+# print(len(encode2))
+# # 20
+# # 27
+# # 72
+# #вывод - наименьший обьем мы получаем при кодировании переменным кодом, а наибольший - при байтовом кодировании
