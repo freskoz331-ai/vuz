@@ -1,0 +1,142 @@
+#1
+# message = '101011'
+# #выбираем бит четности
+# if message.count('1')%2 == 0:
+#     p = '0'#p - бит четности
+#     codesl = message + p
+# if message.count('1')%2 != 0:
+#     p = '1'
+#     codesl = message + p
+# print(codesl)
+# #1010110
+
+#2
+# cor = '101011'
+# bro = '110011'
+# #проверяем корректность данных:
+# def prov(x):
+#     if x[-1] == '0':
+#         if x[0:-1].count('1')%2 == 0:
+#             return True
+#         else:
+#             return False
+#     if x[-1] == '1':
+#         if x[0:-1].count('1')%2 != 0:
+#             return True
+#         else:
+#             return False
+# print(prov(cor))
+# print(prov(bro))
+# # True
+# # True
+#вывод - при повреждении четного количества бит четный контроль не найдет ошибку
+
+#3
+# message1 = "110011010"
+# message2 = "100100101"
+# res = sum(x != y for x, y in zip(message1, message2))
+# print(res)
+# #7 - в двух словах 7 различий
+
+#4
+# message = '101011'
+# code = ''
+# for i in range(len(message)):
+#     code += message[i] * 3
+# print(code)
+# # 111000111000111111 - закодированное соо
+
+#5
+# message = '111000101000111111'
+# ans = ''
+# for i in range(0, len(message), 3):
+#     ch = message[i:i+3]
+#     if len(set(ch)) == 1:
+#         ans += ch
+#     if len(set(ch)) != 1:
+#         if ch.count('1')>ch.count('0'):
+#             ch = '111'
+#             ans += ch
+#         if ch.count('0')>ch.count('1'):
+#             ch = '000'
+#             ans += ch 
+# print(ans)
+# #111000111000111111 - исправленное соо
+
+#6
+# message = "1110"
+# def encode(data):
+#     d1, d2, d3, d4 = (int(x) for x in data)
+#     p1 = d1 ^ d2 ^ d4 #вычисляем биты четности
+#     p2 = d1 ^ d3 ^ d4
+#     p4 = d2 ^ d3 ^ d4
+#     code = [p1, p2, d1, p4, d2, d3, d4]
+#     return ''.join(str(x) for x in code)
+# code = encode(message)
+# print(code)
+# # 0010110 - закодированное соо
+
+#7
+# message = "1011"
+# def encode(data):
+#     d1, d2, d3, d4 = (int(x) for x in data)
+#     p1 = d1 ^ d2 ^ d4
+#     p2 = d1 ^ d3 ^ d4
+#     p4 = d2 ^ d3 ^ d4
+#     code = [p1, p2, d1, p4, d2, d3, d4]
+#     return ''.join(str(x) for x in code)
+# code = encode(message)
+
+# def syndrome(code):
+#     b = [int(x) for x in code]
+#     s1 = b[0] ^ b[2] ^ b[4] ^ b[6]
+#     s2 = b[1] ^ b[2] ^ b[5] ^ b[6]
+#     s4 = b[3] ^ b[4] ^ b[5] ^ b[6]
+#     return s1 * 1 + s2 * 2 + s4 * 4
+# sn = syndrome(code)
+# print(code)
+# print(sn)
+# # 0110011 - закодированное соо
+# # 0 - позиция 0, значит ошибки нет
+
+#8
+def encode(data_bits):
+    d1, d2, d3, d4 = (int(x) for x in data_bits)
+    p1 = d1 ^ d2 ^ d4
+    p2 = d1 ^ d3 ^ d4
+    p4 = d2 ^ d3 ^ d4
+    code = [p1, p2, d1, p4, d2, d3, d4]
+    return ''.join(str(x) for x in code)
+
+def syndrome(code_bits):
+    b = [int(x) for x in code_bits]
+    s1 = b[0] ^ b[2] ^ b[4] ^ b[6]
+    s2 = b[1] ^ b[2] ^ b[5] ^ b[6]
+    s4 = b[3] ^ b[4] ^ b[5] ^ b[6]
+    return s1 * 1 + s2 * 2 + s4 * 4
+
+def correct(code_bits):
+    b = [int(x) for x in code_bits]
+    pos = syndrome(code_bits)
+    if pos != 0:
+        b[pos - 1] ^= 1
+    return ''.join(str(x) for x in b)
+
+data = "1011"
+code = encode(data)
+
+broken = list(code)
+if broken[4] == '1':
+    broken[4] = '0'
+else:
+    broken[4] = '1'
+broken = ''.join(broken)
+
+syn = syndrome(broken)
+fixed = correct(broken)
+
+print(data)#входное сообщение
+print(code)#зашифровали сообщение
+print(broken)#получили неправильное сообщение
+print(syn)#нашли ошибочный символ
+print(fixed)#исправили
