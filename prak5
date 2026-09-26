@@ -1,0 +1,139 @@
+#1
+# binary = input()
+# while len(binary) % 3 != 0:
+#     binary = "0" + binary#добиваем до кратного 3
+# vos = ""
+# for i in range(0, len(binary), 3):#берем числа по 3
+#     group = binary[i:i+3]
+#     vos += str(int(group, 2))
+# print(vos)
+# #ввод: 101101
+# #вывод: 55
+# #руками:
+# # 101 101 
+# #  5   5
+# # ответ - 55
+
+#2
+# binar = input().strip()
+# alphabet = "0123456789ABCDEF"
+# while len(binar) % 4 != 0:
+#     binar = "0" + binar
+# hex_ = ""
+# for i in range(0, len(binar), 4):
+#     g = binar[i:i+4]
+#     hex_ += alphabet[int(g, 2)]
+# print(hex_)
+# # ввод: 101011010100101
+# # вывод: 56A5
+
+#3
+# hex_number = input()
+# alphabet = "01234567F"
+# binary = ""
+# for ch in hex_number:
+#     binary += format(alphabet.index(ch), "03b") 03b добавляет колво бит до необходимого
+# print(binary)
+## ввод123
+## 001010011
+
+#4
+# hex_number = input()
+# alphabet = "0123456789ABCDEF"
+# binary = ""
+# for ch in hex_number:
+#     binary += format(alphabet.index(ch), "04b")
+# print(binary)
+# # A4
+# # 10100100
+
+#5
+# def to(number, base):
+#     alphabet="0123456789ABCDEF"
+#     bits = int.bit_length(base - 1)
+#     result = ""
+#     for ch in number.upper():
+#         value = alphabet.index(ch)
+#         result += format(value, f"0{bits}b")
+#     return result
+
+# def fro(binary, base):
+#     alphabet="0123456789ABCDEF"
+#     bits = int.bit_length(base - 1)
+#     while len(binary) % bits != 0:
+#         binary = "0" + binary
+#     result = ""
+#     for i in range(0, len(binary), bits):
+#         result += alphabet[int(binary[i:i+bits], 2)]
+#     return result
+
+# num = input("Введите число: ")
+# b1 = int(input("Исходное основание (2,8,16): "))
+# b2 = int(input("Целевое основание (2,8,16): "))
+# binary = to(num, b1)
+# converted = fro(binary, b2)
+# print("Промежуточное двоичное представление:", binary)
+# print("Результат перевода:", converted)
+
+#6
+# binar = input().strip()
+# alphabet = "0123456789ABCDEF"
+# while len(binar) % 4 != 0:
+#     binar = "0" + binar
+# hex_ = ""
+# for i in range(0, len(binar), 4):
+#     g = binar[i:i+4]
+#     hex_ += alphabet[int(g, 2)]
+# print(hex_)
+
+# hex_number = hex_
+# alphabet = "0123456789ABCDEF"
+# binary = ""
+# for ch in hex_number:
+#     binary += format(alphabet.index(ch), "04b")
+# print(binary)
+# # 100101
+# # 25
+# # 00100101 - первое и последнее число совпадают, значит перевод корректен
+
+#7
+# n1 = '00100'
+# n2 = '100'
+# n3 = '101010'
+# binar = n1
+# alphabet = "0123456789ABCDEF"
+# while len(binar) % 4 != 0:
+#     binar = "0" + binar
+# hex_ = ""
+# for i in range(0, len(binar), 4):
+#     g = binar[i:i+4]
+#     hex_ += alphabet[int(g, 2)]
+# print(hex_)
+
+# binar = n2
+# alphabet = "0123456789ABCDEF"
+# while len(binar) % 4 != 0:
+#     binar = "0" + binar
+# hex_ = ""
+# for i in range(0, len(binar), 4):
+#     g = binar[i:i+4]
+#     hex_ += alphabet[int(g, 2)]
+# print(hex_)
+
+# binar = n3
+# alphabet = "0123456789ABCDEF"
+# while len(binar) % 4 != 0:
+#     binar = "0" + binar
+# hex_ = ""
+# for i in range(0, len(binar), 4):
+#     g = binar[i:i+4]
+#     hex_ += alphabet[int(g, 2)]
+# print(hex_)
+# # 04
+# # 4
+# # 2A - ведущие нули в исходном числе не влияют на перевод
+
+#8
+# прямой метод перехода исключает сложные арифметические вычисления
+# а значит ускоряет скорость выполнения перевода, уменьшает вероятность ошибки при ручном переводе
+# исключает накопление ошибки(ошибка может быть допущена и в последствии найдена)
