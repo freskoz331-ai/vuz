@@ -1,0 +1,107 @@
+#1
+# num = 36
+# bits = 8
+# binary = format(num, f"0{bits}b")
+# print(binary)
+
+#2
+# num = 13
+# bits = 8
+# dv = format(num, f"0{bits-1}b")
+# dv_1 = "1" + dv
+# print(dv_1)
+
+#3
+# direct = "00011101"
+# inverse_code = "".join(str(int(not int(b))) for b in direct)
+# print(inverse_code)
+
+#4
+# inverse_code = "11110010"
+# twos_complement = format(int(inverse_code, 2) + 1, "08b")
+# print(twos_complement)
+
+#5
+# #прямой
+# num = int(input())
+# bits = 8
+# dv = format(num, f"0{bits-1}b")
+# dv_1 = "1" + dv
+# print(dv_1)
+# #обратный
+# direct = dv_1
+# inv = "".join(str(int(not int(b))) for b in direct)
+# inv = '1' + inv[1:]
+# print(inv)
+# #доп код
+# twos = format(int(inv, 2) + 1, "08b")
+# print(twos)
+# # 15
+# # 10001111
+# # 11110000
+# # 11110001
+
+#6
+# #прямой
+# num = int(input())
+# bits = 8
+# dv = format(num, f"0{bits-1}b")
+# dv_1 = "1" + dv
+# print(dv_1)
+# #обратный
+# direct = dv_1
+# inv = "".join(str(int(not int(b))) for b in direct)
+# inv = '1' + inv[1:]
+# print(inv)
+# #доп код
+# twos = format(int(inv, 2) + 1, "08b")
+# print(twos)
+
+#7
+# def tocode(value, bits):
+#     if value < 0:
+#         abs_value  = abs(value)
+#         magnitude = format(abs_value, f"0{bits - 1}b")
+#         direct_code = "1" + magnitude
+#         inverse_code = "".join("1" if b == "0" else "0" for b in direct_code)
+#         inverse = "1" + inverse_code [1:]
+#         twos_complement = format(int(inverse, 2) + 1, f"0{bits}b")
+#         return [direct_code, inverse, twos_complement]
+#     else:
+#         magnitude = format(value, f"0{bits - 1}b")
+#         direct_code = "0" + magnitude
+#         inverse = direct_code
+#         twos_complement = format(int(inverse, 2) + 0, f"0{bits}b")
+#         return [direct_code, inverse, twos_complement]
+# def sm(a: str, b: str, base: int):
+#     a = a[::-1]
+#     b = b[::-1]
+#     car = 0
+#     res = []
+#     for i in range(max(len(a), len(b))):
+#         da = int(a[i]) if i < len(a) else 0
+#         db = int(b[i]) if i < len(b) else 0
+#         s = da + db + car
+#         res.append(str(s%base))
+#         car = s//base
+#     if car:
+#         res.append('1')
+#     return "".join(reversed(res))
+# a = (tocode(-16, 8))[2]
+# b = (tocode(15, 8))[2]
+# res1 = sm(a, b, 2)
+# if len(res1)>len(a):
+#     res1 = res1[1:]
+# val = int(res1, 2)
+# if res1[0] == '1':
+#     val-= (1<<len(res1))
+# print(val)
+# # 0
+
+# 8
+# rasr = int(input())
+# dvl = -2**(rasr - 1)
+# dvr = 2**(rasr - 1) -1
+# print(dvl,':', dvr)
+# # 10
+# # -512 511
