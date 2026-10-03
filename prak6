@@ -1,0 +1,208 @@
+#1
+# a = "1101101"
+# b = "0110101"
+# a = a[::-1] # переварачиваем строки чтобы складывать с последнего разряда
+# b = b[::-1]
+# carry = 0
+# result = []
+# for i in range(max(len(a), len(b))): # перебираем разряды чисел
+#     da = int(a[i]) if i < len(a) else 0 # берём   цифру числа и если разряд закончился то считаеи его равным 0
+#     db = int(b[i]) if i < len(b) else 0
+#     s = da + db + carry
+#     result.append(str(s % 2))
+#     carry = s // 2
+# if carry:
+#     result.append("1")
+# print("".join(reversed(result))) # 10100010
+
+#2
+# a = "452"
+# b = "341"
+# base = 6
+# a = a[::-1]
+# b = b[::-1]
+# carry = 0
+# result = []
+# for i in range(max(len(a), len(b))):
+#     da = int(a[i]) if i < len(a) else 0
+#     db = int(b[i]) if i < len(b) else 0
+#     s = da + db + carry
+#     result.append(str(s % base))
+#     carry = s // base
+# if carry:
+#     result.append(str(carry))
+# print("".join(reversed(result))) # 1233
+
+#3
+# a = "647"
+# b = "452"
+# base = 8
+# a = a[::-1]
+# b = b[::-1]
+# borrow = 0
+# result = []
+# for i in range(len(a)):
+#     da = int(a[i]) - borrow
+#     db = int(b[i]) if i < len(b) else 0
+#     if da < db:
+#         da += base
+#         borrow = 1
+#     else:
+#         borrow = 0
+#     result.append(str(da - db))
+# print("".join(reversed(result))) # 175
+
+#4
+# n1 = input("введите первое число: ")
+# n2 = input("Введите второе число: ")
+# base = int(input("Введите основание системы: ")) # важно чтобы цифры в числах были допустими в той или иной системе основания
+# a = n1[::-1]
+# b = n2[::-1]
+# carry = 0
+# result = []
+# for i in range(max(len(a), len(b))):
+#     da = int(a[i]) if i < len(a) else 0
+#     db = int(b[i]) if i < len(b) else 0
+#     s = da + db + carry
+#     result.append(str(s % base))
+#     carry = s // base
+# if carry:
+#     result.append(str(carry))
+# print("везультат:", "".join(reversed(result)))
+# # #введите первое число: 412
+# # Введите второе число: 234
+# # Введите основание системы: 6
+# # везультат: 1050
+
+#5
+# a = input("Введите уменьшаемое: ")
+# b = input("Введите вычитаемое: ")
+# base = int(input("Введите основание системы: "))
+# a = list(map(int, a[::-1]))
+# b = list(map(int, b[::-1]))
+# result = []
+# borrow = 0
+# for i in range(len(a)):
+#     da = a[i] - borrow
+#     db = b[i] if i < len(b) else 0
+#     if da < db:
+#         da += base
+#         borrow = 1
+#     else:
+#         borrow = 0
+#     result.append(str(da - db))
+#     answer = "".join(reversed(result)).lstrip("0")
+# print("Результат:", answer)
+# # Введите уменьшаемое: 13
+# # Введите вычитаемое: 2
+# # Введите основание системы: 8
+# # Результат: 11
+
+#6
+# a = "432"
+# b = "123"
+# base = 5
+# a_rev = a[::-1]
+# b_rev = b[::-1]
+# carry = 0
+# result = []
+# for i in range(max(len(a_rev), len(b_rev))):
+#     da = int(a_rev[i]) if i < len(a_rev) else 0
+#     db = int(b_rev[i]) if i < len(b_rev) else 0
+#     s = da + db + carry
+#     result.append(str(s % base))
+#     carry = s // base
+# if carry:
+#     result.append(str(carry))
+# sum_result = "".join(reversed(result))
+# x = list(map(int, sum_result[::-1]))
+# y = list(map(int, b[::-1]))
+# result = []
+# borrow = 0
+# for i in range(len(x)):
+#     dx = x[i] - borrow
+#     dy = y[i] if i < len(y) else 0
+#     if dx < dy:
+#         dx += base
+#         borrow = 1
+#     else:
+#         borrow = 0
+#     result.append(str(dx - dy))
+# check = "".join(reversed(result)).lstrip("0")
+# print("Сумма:", sum_result)
+# print("Проверка:", check)
+# if check == a:
+#     print("правильно")
+# else:
+#     print("Ошибка")
+
+# # Сумма: 1110
+# # Проверка: 432
+# # Сложение выполнено правильно
+
+#7
+# a = "123"
+# b = "123"
+# for base in range(4, 10):
+#     a_rev = a[::-1]
+#     b_rev = b[::-1]
+#     carry = 0
+#     carries = []
+#     for i in range(max(len(a_rev), len(b_rev))):
+#         da = int(a_rev[i]) if i < len(a_rev) else 0
+#         db = int(b_rev[i]) if i < len(b_rev) else 0
+#         s = da + db + carry
+#         carry = s // base
+#         carries.append(carry)
+#     print("Основание:", base)
+#     print("Переносы:", carries)
+#     print("Количество переносов:", sum(carries))
+
+# # Основание: 4
+# # Переносы: [1, 1, 0]
+# # Количество переносов: 2
+# # Основание: 5
+# # Переносы: [1, 1, 0]
+# # Количество переносов: 2
+# # Основание: 6
+# # Переносы: [1, 0, 0]
+# # Количество переносов: 1
+# # Основание: 7
+# # Переносы: [0, 0, 0]
+# # Количество переносов: 0
+# # Основание: 8
+# # Переносы: [0, 0, 0]
+# # Количество переносов: 0
+# # Основание: 9
+# # Переносы: [0, 0, 0]
+# # Количество переносов: 0
+
+#8
+# def count_carries(a, b, base):
+#     a = a[::-1]
+#     b = b[::-1]
+#     carry = 0
+#     count = 0
+
+#     for i in range(max(len(a), len(b))):
+#         da = int(a[i]) if i < len(a) else 0
+#         db = int(b[i]) if i < len(b) else 0
+#         s = da + db + carry
+#         carry = s // base
+#         if carry:
+#             count += 1
+#     return count
+# a = input("Введите первое число: ")
+# b = input("Введите второе число: ")
+# base1 = int(input("Первое основание: "))
+# base2 = int(input("Второе основание: "))
+# carries1 = count_carries(a, b, base1)
+# carries2 = count_carries(a, b, base2)
+# print("Переносов в системе", base1, ":", carries1)
+# print("Переносов в системе", base2, ":", carries2)
+# # Введите первое число: 123
+# # Введите второе число: 567
+# # Первое основание: 8
+# # Второе основание: 9
+# # Переносов в системе 8 : 2
+# # Переносов в системе 9 : 2
