@@ -1,0 +1,153 @@
+#1
+# for a in [0, 1]:
+#     for b in [0, 1]:
+#         and_part = a and b
+#         nand = not and_part
+#         print(a, b, int(and_part), int(nand))
+# # 0 0 0 1
+# # 0 1 0 1
+# # 1 0 0 1
+# # 1 1 1 0
+
+#2
+# for a in [0, 1]:
+#     for b in [0, 1]:
+#         or_part = a or b
+#         nor = not or_part
+#         print(a, b, int(or_part), int(nor))
+# # 0 0 0 1
+# # 0 1 1 0
+# # 1 0 1 0
+# # 1 1 1 0
+
+#3
+# for a in [0, 1]:
+#     for b in [0, 1]:
+#         or_part = a or b
+#         and_part = a and b
+#         xor = or_part and not and_part
+#         print(a, b, int(or_part), int(and_part), int(xor))
+# # 0 0 0 0 0
+# # 0 1 1 0 1
+# # 1 0 1 0 1
+# # 1 1 1 1 0
+
+#4
+# def f(x):
+#     return not(not(x))
+# for x in [0,1]:
+#     print(x, f(x))
+# # 0 False
+# # 1 True
+
+#5
+# def f(a, b, c):
+#     return (a or b) or c
+# def f1(a, b, c):
+#     return a or (b or c)
+# for x in [0,1]:
+#     for y in [0,1]:
+#         for z in [0,1]:
+#             print(x, y, z, '  ', f(x, y, z), f1(x, y, z))
+# # 0 0 0    0 0
+# # 0 0 1    1 1
+# # 0 1 0    1 1
+# # 0 1 1    1 1
+# # 1 0 0    1 1
+# # 1 0 1    1 1
+# # 1 1 0    1 1
+# # 1 1 1    1 1 - все выводы совпадают, значит закон выполняется
+
+#6
+# def f(a, b, c):
+#     return (a and b) and c
+# def f1(a, b, c):
+#     return a and (b and c)
+# for x in [0,1]:
+#     for y in [0,1]:
+#         for z in [0,1]:
+#             print(x, y, z, '  ', f(x, y, z), f1(x, y, z))
+# # 0 0 0    0 0
+# # 0 0 1    0 0
+# # 0 1 0    0 0
+# # 0 1 1    0 0
+# # 1 0 0    0 0
+# # 1 0 1    0 0
+# # 1 1 0    0 0
+# # 1 1 1    1 1
+
+#7
+# # f = (x and y) or z 
+# for x in [0,1]:
+#     for y in [0,1]:
+#         for z in [0,1]:
+#             first = x and y
+#             second = first or z
+#             print(x, y, z, ' ', int(first), int(second))
+# # 0 0 0   0 0
+# # 0 0 1   0 1
+# # 0 1 0   0 0
+# # 0 1 1   0 1
+# # 1 0 0   0 0
+# # 1 0 1   0 1
+# # 1 1 0   1 1
+# # 1 1 1   1 1
+
+#8
+def f(a, b, c):
+    return (a or b) or c
+def f1(a, b, c):
+    return a and b or c
+print('f = (a or b) or c')
+print('f1 = a and b or c')
+print('x', 'y', 'z', '  f')
+fres = []
+f1res = []
+for x in [0,1]:
+    for y in [0,1]:
+        for z in [0,1]:
+            fres.append(f(x, y, z))
+            print(x, y, z, ' ', f(x, y, z))
+print('  ')
+print('x', 'y', 'z', '  f1')
+for x1 in [0,1]:
+    for y1 in [0,1]:
+        for z1 in [0,1]:
+            f1res.append(f1(x1, y1, z1))
+            print(x1, y1, z1, ' ', f1(x1, y1, z1,))
+print('выводы', fres)
+print('      ', f1res)
+fla = 0
+for i in range(len(fres)):
+    if fres[i] == f1res[i]:
+        fla += 0
+    if fres[i] != f1res[i]:
+        fla += 1
+if fla == 0:
+    print('выражения эквивалентны')
+else:
+    print('выражения не эквивалентны')
+
+# f = (a or b) or c
+# f1 = a and b or c
+# x y z   f
+# 0 0 0   0
+# 0 0 1   1
+# 0 1 0   1
+# 0 1 1   1
+# 1 0 0   1
+# 1 0 1   1
+# 1 1 0   1
+# 1 1 1   1
+
+# x y z   f1
+# 0 0 0   0
+# 0 0 1   1
+# 0 1 0   0
+# 0 1 1   1
+# 1 0 0   0
+# 1 0 1   1
+# 1 1 0   1
+# 1 1 1   1
+# выводы [0, 1, 1, 1, 1, 1, 1, 1]
+#        [0, 1, 0, 1, 0, 1, 1, 1]
